@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Салон красоты</title>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; }
+    header { background: #0077cc; padding: 10px 20px; color: white; }
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6); display: none; justify-content: center; align-items: center;
+    }
+    .modal {
+      background: white; padding: 20px; border-radius: 8px; max-width: 400px; width: 90%;
+    }
+    .modal button { margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Keratin Studio</h1>
+  <button onclick="openModal()">Записаться</button>
+</header>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2>Запись</h2>
+    <form>
+      <label>Имя</label><br>
+      <input type="text" required><br>
+      <label>Телефон</label><br>
+      <input type="tel" required><br>
+      <button type="submit">Отправить</button>
+      <button type="button" onclick="closeModal()">Закрыть</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('modal').style.display = 'flex';
+  }
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
