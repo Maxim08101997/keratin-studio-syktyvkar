@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Салон красоты</title>
+
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    /* Общие стили */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fafafa;
+      color: #333;
+      margin: 0;
+      padding: 60px 20px 0;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 40px 0 20px;
+      color: #222;
+    }
+
+    /* Навигация */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #0077cc;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+    }
+
+    .navbar ul {
+      margin: 0;
+      padding: 0 20px;
+      display: flex;
+      list-style: none;
+      height: 60px;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #ffd700;
+    }
+
+    /* Секция услуг */
+    #services {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .service-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      padding: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-item h3 {
+      margin-top: 0;
+      color: #0077cc;
+    }
+
+    .service-item p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Галерея */
+    #gallery {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      height: 180px;
+    }
+
+    .card p {
+      padding: 15px;
+      margin: 0;
+      font-size: 1rem;
+      color: #444;
+      text-align: center;
+    }
+
+    /* Отзывы */
+    #reviews {
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      padding: 0 10px;
+    }
+
+    .review-item {
+      background: #e3f2fd;
+      border-left: 5px solid #2196f3;
+      padding: 20px 25px;
+      border-radius: 8px;
+      font-style: italic;
+      color: #0d47a1;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    }
+
+    .review-item strong {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      color: #0b3954;
+      text-align: right;
+    }
+
+    /* Форма записи */
+    #form {
+      max-width: 600px;
+      margin: 0 auto 60px;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+    }
+
+    #form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .contact-form input,
+    .contact-form select {
+      width: 100%;
+      padding: 8px 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .contact-form button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: #005fa3;
+    }
+
+    /* Футер */
+    footer {
+      background: #222;
+      color: #eee;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    footer h3 {
+      margin-top: 0;
+      color: #ffd700;
+    }
+
+    footer p, .social-link {
+      margin: 5px 0;
+      color: #eee;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      color: #ffd700;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .services-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #reviews {
+        padding: 0 5px;
+      }
+
+      .footer-container {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 60px 10px 0;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .card img {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#gallery">Галерея</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
+      <li><a href="#contact">Контакты</a></li>
+      <li><a href="#form">Запись</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="services" data-aos="fade-up">
+  <h2>Услуги</h2>
+  <div class="services-list">
+    <div class="service-item">
+      <h3>Кератиновое выпрямление до плеч</h3>
+      <p>Эффект до 6 месяцев, premium‑состав — от 3 500₽</p>
+    </div>
+    <div class="service-item">
+      <h3>Ботокс для волос</h3>
+      <p>Глубокое восстановление и питание — от 2 800₽</p>
+    </div>
+    <div class="service-item">
+      <h3>Нанопластика ZAP Organic</h3>
+      <p>Выпрямление без утюжка — от 3 200₽</p>
+    </div>
+    <div class="service-item">
+      <h3>SPA‑уход и реконструкция</h3>
+      <p>Маски, сыворотки L’Oréal — от 1 200₽</p>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" data-aos="fade-up" data-aos-delay="100">
+  <h2>Галерея работ</h2>
+  <div class="gallery-grid">
+    <div class="card">
+      <img src="https://via.placeholder.com/400x180?text=До+и+после+1" alt="До и после процедуры" />
+      <p>Кератин — результат через 3 месяца</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x180?text=До+и+после+2" alt="До и после процедуры" />
+      <p>Ботокс — восстановление структуры волос</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x180?text=До+и+после+3" alt="До и после процедуры" />
+      <p>Нанопластика — гладкие и блестящие волосы</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/400x180?text=До+и+после+4" alt="До и после процедуры" />
+      <p>SPA-уход — глубокое питание и увлажнение</p>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" data-aos="fade-up" data-aos-delay="200">
+  <h2>Отзывы клиентов</h2>
+  <div class="review-list">
+    <div class="review-item">
+      <p>«Волосы гладкие, блестят, эффекта хватило на полгода!»</p>
+      <p><strong>— Кристина, Йошкар‑Ола</strong></p>
+    </div>
+    <div class="review-item">
+      <p>«Очень довольна нанопластикой, волосы не пушатся и легко укладываются.»</p>
+      <p><strong>— Мария, Москва</strong></p>
+    </div>
+    <div class="review-item">
+      <p>«SPA-уход подарил моим волосам новую жизнь, спасибо!»</p>
+      <p><strong>— Ольга, Санкт-Петербург</strong></p>
+    </div>
+  </div>
+</section>
+
+<section id="form" data-aos="fade-up" data-aos-delay="300">
+  <h2>Записаться на процедуру</h2>
+  <form class="contact-form" action="#" method="post" autocomplete="off">
+    <label for="name">Ваше имя</label>
+    <input type="text" id="name" name="name" placeholder="Введите имя" required />
+
+    <label for="phone">Телефон</label>
+    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required pattern="^(\+7|8)?[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$" />
+
+    <label for="service">Выберите услугу</label>
+    <select id="service" name="service" required>
+      <option value="" disabled selected>-- Выберите --</option>
+      <option value="keratin">Кератиновое выпрямление</option>
+      <option value="botox">Ботокс для волос</option>
+      <option value="nanoplasty">Нанопластика ZAP Organic</option>
+      <option value="spa">SPA‑уход и реконструкция</option>
+    </select>
+
+    <button type="submit">Записаться</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div>
+      <h3>Контакты</h3>
+      <p>г. Йошкар‑Ола, ул. Ленина, 10</p>
+      <p>Телефон: +7 (999) 123-45-67</p>
+    </div>
+    <div>
+      <h3>Мы в соцсетях</h3>
+      <a href="https://vk.com" target="_blank" class="social-link" rel="noopener noreferrer">VK</a><br />
+      <a href="https://instagram.com" target="_blank" class="social-link" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+  });
+</script>
+
+</body>
+</html>
